@@ -1,6 +1,6 @@
 # Cross-primitive-comparison-in-CP-ABE
 
-[![DOI](https://img.shields.io/badge/DOI-10.1515/jmc-2025-0051-blue)](https://doi.org/10.1515/jmc-2025-0051)
+[![DOI](https://img.shields.io/badge/DOI-10.1515/jmc--2025--0051-blue)](https://doi.org/10.1515/jmc-2025-0051)
 [![DOI](https://img.shields.io/badge/DOI-10.69091/koine/vol--8--P10-blue)](https://doi.org/10.69091/koine/vol-8-P10) 
 
 This repository holds the material related to the pubblication  
