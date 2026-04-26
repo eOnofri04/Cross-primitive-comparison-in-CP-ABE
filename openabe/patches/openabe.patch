@@ -1,0 +1,82 @@
+From 7d585dd25bb59f6bd14e45a9d95d10f005e32178 Mon Sep 17 00:00:00 2001
+From: lorenzo1300 <lorenzogasparini17@gmail.com>
+Date: Sun, 26 Apr 2026 21:19:48 +0200
+Subject: [PATCH] fixes for benchmark
+
+---
+ Makefile.common                                         | 4 ++--
+ deps/gtest/Makefile                                     | 2 +-
+ deps/gtest/{download_gtest.sh => download_gtest.sh.bkp} | 0
+ deps/relic/Makefile                                     | 2 +-
+ src/Makefile.inc                                        | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+ rename deps/gtest/{download_gtest.sh => download_gtest.sh.bkp} (100%)
+
+diff --git a/Makefile.common b/Makefile.common
+index 4636296..581a226 100644
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -3,7 +3,7 @@
+ CC ?= g++
+ CXX ?= g++
+ 
+-LDLIBS ?= -lgtest -lpthread
++# LDLIBS ?= -lgtest -lpthread
+ 
+ DEPS_INSTALL_ZROOT = $(ZROOT)/deps/root
+ OABE_LIB_ROOT = $(ZROOT)/root/lib
+@@ -42,7 +42,7 @@ else
+ endif
+ 
+ # Set shared lib extension for each OS
+-DEPS_PACKAGES = $(if $(USE_DEPS),$(USE_DEPS),relic openssl gtest)
++DEPS_PACKAGES = $(if $(USE_DEPS),$(USE_DEPS),relic openssl)
+ ADD_CFLAGS :=
+ OS_CXXFLAGS :=
+ WITH_BP := 
+diff --git a/deps/gtest/Makefile b/deps/gtest/Makefile
+index 75cd73c..b470e65 100644
+--- a/deps/gtest/Makefile
++++ b/deps/gtest/Makefile
+@@ -10,7 +10,7 @@ DEST_LIBDIR := $(DEPS_INSTALL_ZROOT)/lib
+ DEST_INCLUDEDIR := $(DEPS_INSTALL_ZROOT)/include
+ 
+ package:
+-	./download_gtest.sh $(VERSION)
++	#./download_gtest.sh $(VERSION)
+ 
+ googletest-release-$(VERSION)/.built: googletest-release-$(VERSION)
+ 	cd $<; \
+diff --git a/deps/gtest/download_gtest.sh b/deps/gtest/download_gtest.sh.bkp
+similarity index 100%
+rename from deps/gtest/download_gtest.sh
+rename to deps/gtest/download_gtest.sh.bkp
+diff --git a/deps/relic/Makefile b/deps/relic/Makefile
+index ed50a3f..fd03205 100644
+--- a/deps/relic/Makefile
++++ b/deps/relic/Makefile
+@@ -19,7 +19,7 @@ EC_TMP=$(shell mktemp -d tmp$(EC_LABEL)-XXXX)
+ EC_HDR_PREFIX=_$(EC_LABEL)
+ 
+ # Options: BN254 or BN382 (ARITH=x64-asm-382)
+-BN_CURVE=254
++BN_CURVE=382
+ EC_CURVE=256
+ 
+ all: package relic-$(VERSION)/.built
+diff --git a/src/Makefile.inc b/src/Makefile.inc
+index 519ba29..270604b 100644
+--- a/src/Makefile.inc
++++ b/src/Makefile.inc
+@@ -6,7 +6,7 @@ OABELIB = libopenabe.a
+ AR = ar
+ MAKE = make
+ ifndef BISON
+-BISON = ${ZROOT}/bin/bison
++BISON = /bin/bison
+ endif
+ FLEX = flex
+ INSTALL = install
+-- 
+2.50.1 (Apple Git-155)
+
